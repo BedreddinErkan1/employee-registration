@@ -1,2 +1,22 @@
-package com.sample.employeeregistration.controller;public class EmployeeController {
+package com.sample.employeeregistration.controller;
+
+import com.sample.employeeregistration.bootstrap.DataGenerator;
+import com.sample.employeeregistration.model.Employee;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/employee")
+public class EmployeeController {
+
+    @GetMapping("/register")
+    public String createEmployee(Model model){
+
+        model.addAttribute("employee", new Employee());
+        model.addAttribute("states", DataGenerator.getAllStates());
+        return "employee/employee-create";
+    }
+
 }
